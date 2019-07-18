@@ -1,32 +1,29 @@
 //将一个正整数分解质因数。例如：输入90, 打印出90 = 2 * 3 * 3 * 5
-#include<stdio.h>
-
+#incldue<stdio.h>
 int main()
 {
 	int num = 0;
-	int i = 2;
-	scanf_s("%d", &num);
-
-	printf("%d = ", num);
-	for (i = 2; i <= num; i++)
+	int i;
+	scanf("%d",&num);
+	
+	for(i = 2;i <= num;i++)
 	{
-		while (num != i)
+		whlie(i != num)
 		{
-			if (num % i == 0)
+			if(num%i == 0)
 			{
-				printf("%d*", i);
+				printf("%d*",i);
 				num /= i;
-			}
-			else
+			}else
 			{
 				break;
 			}
 		}
 	}
-
-	printf("%d", num);
+	
+	printf("%d",num);
 	return 0;
-}
+ } 
 
 
 
