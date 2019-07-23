@@ -27,11 +27,19 @@ int Mul2(int n)
 int main()
 {
 	int n = 0;
+	int i = 1;
+	int result = 0;
 	scanf_s("%d", &n);
+	
+	
+	for(i ; i <= n;i++)
+	{
+		result += Mul(i);
+	 } 
 
-	printf("%d\n",Mul(n)); //µİ¹é
+	printf("%d\n",result); //µİ¹é
 
-	printf("%d\n", Mul2(n));  //·Çµİ¹é
+//	printf("%d\n", Mul2(n));  //·Çµİ¹é
 
 	return 0;
 }
