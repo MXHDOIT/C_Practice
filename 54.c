@@ -2,8 +2,10 @@
 #include<stdio.h>
 
 void Move(int n, char m, char q)
-{
-	printf("第%d个从%c移到%c\n", n, m, q);
+{	
+    static int count = 0;
+    count++;
+	printf("第%d个盘子从%c移到%c,已移%d步\n", n, m, q,count);
 }
 
 void Hanoi(int n, char x, char y, char z) //n个圆盘，从 x移到 z上，y为中介
@@ -26,6 +28,7 @@ int main()
 {
 	int n = 0;
 	scanf_s("%d", &n);
+	int count = 0;
 
 	Hanoi(n, 'A', 'B', 'C');  //n个圆盘，从 A 移到 C上，B为中介
 	return 0;
