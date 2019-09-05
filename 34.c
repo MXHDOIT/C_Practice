@@ -5,8 +5,8 @@ int main()
 	int arr[10][10] = { 0 };
 	int i = 0;
 	int j = 0;
-	int len = sizeof(arr) / sizeof(arr[0]);
-
+	int len = 0;
+	scanf("%d",&len);
 	for (i = 0; i < len; i++)
 	{
 		arr[i][0] = 1;
