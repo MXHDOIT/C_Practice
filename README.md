@@ -81,3 +81,4 @@ EDCBABC
 74.翻转32位二进制
 75.不用（a+b）/2;求平均值
 76.不是成对出现
+77.student a am i转换i am a student
