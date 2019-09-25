@@ -1,0 +1,5 @@
+﻿  list.c
+  test.c
+  正在生成代码...
+C:\Users\apple\Desktop\C_Practice\96线性表顺序存储\list.c(4,1): warning C4028:  形参 3 与声明不同
+  线性表.vcxproj -> C:\Users\apple\Desktop\C_Practice\96线性表顺序存储\Debug\线性表.exe
