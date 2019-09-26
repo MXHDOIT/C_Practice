@@ -185,7 +185,7 @@ void CreateList_H(LinkList &L,int n)
 	while (n--)
 	{
 		LNode* p = new LNode;
-		scanf("%d", &p->data);
+		scanf_s("%d", &p->data);
 
 		p->next = L->next;
 		L->next = p;
@@ -207,12 +207,64 @@ void CreateList_T(LinkList& L, int n)
 			tail = tail->next;
 		}
 		LNode* p = new LNode;
-		scanf("%d", &p->data);
+		scanf_s("%d", &p->data);
 		p->next = NULL;
 		tail->next = p;
 	}
 	
 }
+
+
+//线性表合并
+void Union(LinkList & La, LinkList& Lb)
+{
+	int lenLa = ListLength_L(La);
+	int lenLb = ListLength_L(Lb);
+	int i, e;
+	for (i = 1; i <= lenLb; i++)
+	{
+		GetElem_L(Lb, i, e);
+		if (!(LocateElem_L(La, e)))
+			ListInsert_L(La, ++lenLa, e);
+	}
+}
+
+//有序表的合并
+void MergeList_L(LinkList &La,LinkList &Lb,LinkList &Lc)
+{
+	LNode* pa, * pb, * pc;
+	pa = La->next;
+	pb = Lb->next;
+	Lc = La;
+	pc = Lc;
+
+	while (pa && pb)
+	{
+		if (pa->data < pb->data)
+		{
+			pc->next = pa;
+			pc = pa;
+			pa = pa->next;
+		}
+		else
+		{
+			pc->next = pb;
+			pc = pb;
+			pb = pb->next;
+		}
+	}
+
+	if (pa)
+	{
+		pc->next = pa;
+	}
+	else
+	{
+		pc->next = pb;
+	}
+	delete Lb;
+}
+
 int main()
 {
 	LinkList L;
