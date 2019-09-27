@@ -47,11 +47,10 @@ void CreateList(LinkList* list, int n)
 }
 
 
-void AddList(LinkList La, LinkList Lb)
+LinkList AddList(LinkList La, LinkList Lb)
 {
-	assert(La);
-	assert(Lb);
-	LinkList Lc = La;
+	
+	LinkList Lc = NULL;
 	Node* pc = Lc;
 	Node* pa = La;
 	Node* pb = Lb;
@@ -69,36 +68,39 @@ void AddList(LinkList La, LinkList Lb)
 			else
 			{
 				pa->coef = pa->coef + pb->coef;
-				if (pc == Lc)
+				if (Lc == NULL)
 				{
 					
-					pc = pa;
+					Lc = pa;
+					
 				}
 				else
 				{
 					pc->next = pa;
 				}
+				pc = pa;
 				pa = pa->next;
 				pb = pb->next;
+				
 			}
-		}
-
-		if (pa->expn < pb->expn)
+		}else if (pa->expn < pb->expn)
 		{
-			if (pc == Lc)
+			if (Lc == NULL)
 			{
 
-				pc = pa;
+				Lc = pa;
 			}
 			else
 			{
 				pc->next = pa;
 			}
+			pc = pa;
 			pa = pa->next;
+		
 		}
 		else if(pa->expn > pb->expn)
 		{
-			if (pc == Lc)
+			if (Lc == NULL)
 			{
 
 				pc = pb;
@@ -107,10 +109,42 @@ void AddList(LinkList La, LinkList Lb)
 			{
 				pc->next = pb;
 			}
+			pc = pb;
 			pb = pb->next;
+			
 		}
 	}
+
+	if (pc != NULL)
+	{
+		if (pa)
+			pc->next = pa;
+		else
+			pc->next = pb;
+	}
+	else
+	{
+		Lc = pa ? pa : pb;
+	}
+
+	
+	return Lc;
 }
+
+
+void Print(LinkList list)
+{
+	Node* p = list;
+
+	while (p->next)
+	{
+		printf("%.1f* X ^%d +",p->coef, p->expn);
+		p = p->next;
+	}
+	printf("%.1f* X ^%d \n", p->coef, p->expn);
+
+}
+
 int main()
 {
 	LinkList Ax = NULL, Bx = NULL;
@@ -119,10 +153,17 @@ int main()
 	scanf_s("%d", &An);
 	CreateList(&Ax, An);
 
+	printf("Ax函数为：");
+	Print(Ax);
 	printf("请输入Bx的项数：");
 	scanf_s("%d", &Bn);
 	CreateList(&Bx, Bn);
+	printf("Bx函数为：");
+	Print(Bx);
+	/*Print(Ax);*/
 
-	AddList(Ax, Bx);
+	LinkList Cx = AddList(Ax, Bx);
+	printf("相加后函数为：");
+	Print(Cx);
 	return 0;
 }
